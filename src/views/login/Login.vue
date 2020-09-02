@@ -68,7 +68,7 @@ export default {
         alert('username or password invalid')
         return false
       } else {
-        const loginResponse = await this.$store.dispatch('auth/loginAction', this.body)
+        const loginResponse = await this.$store.dispatch('auth/login', this.body)
         if (loginResponse.status === 200) {
           this.$router.push({name: 'users'})
         } else {

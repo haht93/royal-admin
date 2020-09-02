@@ -1,5 +1,5 @@
 import { loginApi } from '@/api/auth'
-import { getCookie, saveCookie } from '@/utils/cookie'
+import { getCookie, saveCookie, removeCookie } from '@/utils/cookie'
 
 const state = {
   token: getCookie('access_token') ? JSON.parse(getCookie('access_token')) : ''
@@ -10,10 +10,14 @@ const getters = {
 const mutations = {
   SET_TOKEN: (state, token) => {
     state.token = token
+  },
+  RESET_TOKEN: (state) => {
+    state.token = ''
+    removeCookie('access_token')
   }
 }
 const actions = {
-  async loginAction ({commit}, params) {
+  async login ({commit}, params) {
     try {
       const response = await loginApi(params)
       // eslint-disable-next-line camelcase
@@ -24,6 +28,12 @@ const actions = {
     } catch (error) {
       return error
     }
+  },
+  resetTokenAction ({commit}) {
+    return new Promise(resolve => {
+      commit('RESET_TOKEN')
+      resolve()
+    })
   }
 }
 export default {

@@ -21,4 +21,21 @@ requestAxios.interceptors.request.use(config => {
 error => {
   return Promise.reject(error)
 })
+
+requestAxios.interceptors.response.use(response => {
+  return response
+}, error => {
+  const response = error.response
+  switch (response.status) {
+    case 401:
+      store.dispatch('auth/resetTokenAction').then(() => {
+        location.reload
+      })
+      break
+    default:
+      return Promise.reject(error)
+  }
+  return Promise.reject(error)
+})
+
 export default requestAxios

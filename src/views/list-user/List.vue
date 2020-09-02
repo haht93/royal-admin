@@ -18,7 +18,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="item in getListUser" :key="item.id">
+                <tr v-for="item in listUser" :key="item.id">
                     <td class="py-1"><img :src="item.avatar" alt="image"/></td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.email }}</td>
@@ -44,18 +44,17 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: 'users',
-    async created () {
-        console.log('a');
-        await this.getUsersAction()
+    created () {
+        this.getUsers()
     },
     computed: {
         ...mapGetters({
-        getListUser: 'users/getListUser'
+        listUser: 'users/listUser'
         })
     },
     methods: {
         ...mapActions({
-            getUsersAction: 'users/getUsersAction'
+            getUsers: 'users/getUsers'
         })
     }
 }

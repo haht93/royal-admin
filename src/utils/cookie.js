@@ -6,3 +6,6 @@ export function getCookie (key) {
 export function saveCookie (key, value) {
   return Cookies.set(key, value)
 }
+export function removeCookie (key) {
+  return Cookies.remove(key)
+}

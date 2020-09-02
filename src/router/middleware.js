@@ -1,5 +1,5 @@
-import router from './router'
-import store from './store'
+import router from '.'
+import store from '@/store'
 import Vue from 'vue'
 
 router.beforeEach(async (to, from, next) => {

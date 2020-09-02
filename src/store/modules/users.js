@@ -6,7 +6,7 @@ import { getUsers } from '@/api/users'
     }
   }
   const getters = {
-    getListUser: (state) => {
+    listUser: (state) => {
       return state.Users.list
     }
   }
@@ -16,7 +16,7 @@ import { getUsers } from '@/api/users'
     }
   }
   const actions = {
-    async getUsersAction ({commit}) {
+    async getUsers ({commit}) {
       try {
         const responseUsers = await getUsers()
         commit('SET_LIST_USER', responseUsers.data)
